@@ -2,8 +2,7 @@
 
 ## Introdução
 
-Este é o nosso case técnico! A ideia é que você possa mostrar toda sua expertise técnica através dele!
-Estamos animados para te ver brilhar!
+Este é o repositório contendo a aplicação de teste da Onfly, visando demonstrar a tomada de decisões arquiteturais acerca de um projeto de crud simples, incluindo segurança, validação de dados, testes, etc.
 
 [SPOILER] As instruções de entrega e apresentação do challenge estão no final deste Readme (=
 

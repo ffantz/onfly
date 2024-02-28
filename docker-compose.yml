@@ -3,18 +3,25 @@ version: '3'
 services:
   laravel-docker:
     container_name: onfly_app
+    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh
     build: .
     volumes:
       - ./api_onfly:/var/www/html
     ports:
       - 8000:8000
+    depends_on:
+      - mysql_db
 
   mysql_db:
     image: mysql:latest
+    command: --innodb-use-native-aio=0
+    tty: true
+    volumes:
+      - ./mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: onfly
       MYSQL_USER: api_onfly
       MYSQL_PASSWORD: '04Ch}fF1QjZpc8QK&gzL'
     ports:
-      - 3307:3306
+      - 3306:3306
