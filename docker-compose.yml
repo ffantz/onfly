@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  laravel-docker:
+    container_name: onfly_app
+    build: .
+    volumes:
+      - ./api_onfly:/var/www/html
+    ports:
+      - 8000:8000
+
+  mysql_db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: onfly
+      MYSQL_USER: api_onfly
+      MYSQL_PASSWORD: '04Ch}fF1QjZpc8QK&gzL'
+    ports:
+      - 3307:3306
