@@ -3,7 +3,7 @@ version: '3'
 services:
   laravel-docker:
     container_name: onfly_app
-    entrypoint: dockerize -wait tcp://db:3306 -timeout 20s docker-entrypoint.sh
+    entrypoint: dockerize -wait tcp://mysql_db:3306 -timeout 20s php artisan serve --host=0.0.0.0 --port=8000
     build: .
     volumes:
       - ./api_onfly:/var/www/html
@@ -13,6 +13,7 @@ services:
       - mysql_db
 
   mysql_db:
+    container_name: onfly_database
     image: mysql:latest
     command: --innodb-use-native-aio=0
     tty: true

@@ -13,6 +13,11 @@ RUN apt-get update \
     && docker-php-ext-configure zip \
     && docker-php-ext-install zip pdo pdo_mysql gd intl
 
+# Entrypoint
+# COPY ./docker-entrypoint.sh /docker-entrypoint.sh
+# RUN chmod +x /docker-entrypoint.sh
+
+# Instala a ferramenta para criar dependencia entre
 ENV DOCKERIZE_VERSION v0.6.1
 RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
     && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
@@ -23,5 +28,3 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Expor a porta 8000
 EXPOSE 8000
-
-CMD php artisan serve --host=0.0.0.0 --port=8000
