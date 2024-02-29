@@ -11,6 +11,17 @@ services:
       - 8000:8000
     depends_on:
       - mysql_db
+      - redis
+    networks:
+    - onfly-network
+
+  redis:
+    container_name: onfly_redis
+    image: redis:latest
+    ports:
+      - 6379:6379
+    networks:
+    - onfly-network
 
   mysql_db:
     container_name: onfly_database
@@ -26,3 +37,9 @@ services:
       MYSQL_PASSWORD: '04Ch}fF1QjZpc8QK&gzL'
     ports:
       - 3306:3306
+    networks:
+    - onfly-network
+
+networks:
+  onfly-network:
+    driver: "bridge"

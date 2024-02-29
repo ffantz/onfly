@@ -8,9 +8,18 @@ use App\Repositories\ExpenseRepository;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use App\Models\Expense;
+use App\BO\Traits\ExpenseTrait;
+use App\Notifications\ExpenseNotification;
 
+/**
+ * Define a regra de negocio do modelo, sendo a unica camada permitida a acessar a camada de banco de dados (repository)
+ *
+ * @author Flávio Caetano <flavio.santos@empresta.com.br>
+ */
 class ExpenseBO
 {
+    use ExpenseTrait;
+
     /**
      * Displays a resource's list
      *
@@ -29,7 +38,11 @@ class ExpenseBO
      */
     public function store($request): Expense
     {
-        return ExpenseRepository::store($this->prepare($request));
+        $expense = ExpenseRepository::store($this->prepare($request));
+        $expense->email = \Auth::user()->email;
+
+        // $expense->notify((new ExpenseNotification($expense))->delay(now()->addMinutes(1)));
+        return $expense;
     }
 
     /**

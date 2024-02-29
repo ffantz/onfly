@@ -11,17 +11,17 @@ class ExpensePolicy
     /**
      * Determine whether the user can view any models.
      */
-    public function viewAny(User $user): bool
+    public function viewAny(User $user): Response
     {
-        //
+        return Response::allow();
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Expense $expense): bool
+    public function view(User $user, Expense $expense): Response
     {
-        //
+        return $user->id === $expense->user_id ? Response::allow() : Response::deny('Voce nao é dono dessa despesa');
     }
 
     /**
@@ -29,23 +29,23 @@ class ExpensePolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Expense $expense): bool
+    public function update(User $user, Expense $expense): Response
     {
-        return $user->id === $expense->user_id ? Response::allow() : Response::deny('Voce nao é dono dessa despesa');;
+        return $user->id === $expense->user_id ? Response::allow() : Response::deny('Voce nao é dono dessa despesa');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Expense $expense): bool
+    public function delete(User $user, Expense $expense): Response
     {
-        //
+        return $user->id === $expense->user_id ? Response::allow() : Response::deny('Voce nao é dono dessa despesa');
     }
 
     /**

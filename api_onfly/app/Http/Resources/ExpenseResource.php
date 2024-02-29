@@ -2,23 +2,23 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
-class ExpenseResource extends ResourceCollection
+class ExpenseResource extends JsonResource
 {
     /**
-     * Transform the resource collection into an array.
+     * Transform the resource into an array.
      *
-     * @return array<int|string, mixed>
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
      */
-    public function toArray(Request $request): array
-    {
+    public function toArray($request) {
         return [
+            'id'          => $this->id,
             'description' => $this->description,
             'date'        => $this->date,
-            'users_id'    => $this->users_id,
             'cost'        => $this->cost,
+            'user_id'     => $this->user_id,
         ];
     }
 }

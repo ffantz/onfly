@@ -32,16 +32,9 @@ class ExpenseRequest extends CustomRulesRequest
     public function validateToStore(): array
     {
         return [
-        ];
-    }
-
-    /**
-     * @return Array
-     */
-    public function validateToSave(): array
-    {
-        return [
-            // 'name' => 'required|max:60',
+            'description' => 'required|max:191',
+            'date' => 'required|date|before_or_equal:now',
+            'cost' => 'required|gte:0|decimal:0,2',
         ];
     }
 
@@ -51,6 +44,9 @@ class ExpenseRequest extends CustomRulesRequest
     public function validateToUpdate(): array
     {
         return [
+            'description' => 'required|max:191',
+            'date' => 'required|date|before_or_equal:now',
+            'cost' => 'required|gte:0|decimal:0,2',
         ];
     }
 
@@ -70,6 +66,19 @@ class ExpenseRequest extends CustomRulesRequest
     public function messages(): array
     {
         return [
+            'description.required' => 'A campo descriçao é obrigatorio.',
+            'date.required' => 'O campo data é obrigatorio.',
+            'cost.required' => 'O campo valor é obrigatorio.',
+
+            'description.max' => 'A descricao deve conter no maximo 191 caracteres.',
+
+            'date.date' => 'O campo data deve ser uma data valida.',
+
+            'date.before_or_equal' => 'A data deve ser igual ou antes de hoje.',
+
+            'cost.gte' => 'O campo valor deve ser maior que 0.',
+
+            'cost.decimal' => 'O campo valor deve ter no maximo 2 casas decimais.'
         ];
     }
 
