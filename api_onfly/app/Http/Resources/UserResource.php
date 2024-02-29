@@ -3,8 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\ExpenseResource;
 
-class ExpenseResource extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,9 +15,9 @@ class ExpenseResource extends JsonResource
      */
     public function toArray($request) {
         return [
-            'descricao' => $this->description,
-            'data'      => \Carbon\Carbon::createFromDate($this->date)->format('d/m/Y'),
-            'valor'     => 'R$ ' . number_format($this->cost, 2, ',', '.'),
+            'nome'     => $this->name,
+            'email'    => $this->email,
+            'despesa' => ExpenseResource::collection($this->expenses),
         ];
     }
 }

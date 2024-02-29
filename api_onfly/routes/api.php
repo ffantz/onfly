@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\{AuthController,ExpenseController};
+use App\Http\Controllers\{AuthController,ExpenseController,UserController};
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +19,7 @@ use App\Http\Controllers\{AuthController,ExpenseController};
 Route::post('/login', [AuthController::class, 'login']);
 
 Route::group(['middleware' => ['auth:sanctum', 'throttle:200,1']], function () {
+    Route::get('/', [UserController::class, 'getExpenses']);
+
     Route::resource('expense', ExpenseController::class);
 });
