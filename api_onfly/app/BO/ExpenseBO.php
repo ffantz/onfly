@@ -41,7 +41,9 @@ class ExpenseBO
         $expense = ExpenseRepository::store($this->prepare($request));
         $expense->email = \Auth::user()->email;
 
-        // $expense->notify((new ExpenseNotification($expense))->delay(now()->addMinutes(1)));
+        // Utiliza a a notificação da propria model
+        $expense->notify((new ExpenseNotification($expense)));
+
         return $expense;
     }
 

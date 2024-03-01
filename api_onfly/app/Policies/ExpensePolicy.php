@@ -45,7 +45,7 @@ class ExpensePolicy
      */
     public function delete(User $user, Expense $expense): Response
     {
-        return $user->id === $expense->user_id ? Response::allow() : Response::deny('Voce nao é dono dessa despesa');
+        return $user->id === $expense->user_id ? Response::allow() : Response::deny('Voce nao pode deletar uma despesa que nao seja sua');
     }
 
     /**

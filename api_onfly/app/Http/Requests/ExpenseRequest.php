@@ -66,7 +66,7 @@ class ExpenseRequest extends CustomRulesRequest
     public function messages(): array
     {
         return [
-            'description.required' => 'A campo descriçao é obrigatorio.',
+            'description.required' => 'O campo descriçao é obrigatorio.',
             'date.required' => 'O campo data é obrigatorio.',
             'cost.required' => 'O campo valor é obrigatorio.',
 

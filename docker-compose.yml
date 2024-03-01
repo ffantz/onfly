@@ -36,7 +36,7 @@ services:
       MYSQL_USER: api_onfly
       MYSQL_PASSWORD: '04Ch}fF1QjZpc8QK&gzL'
     ports:
-      - 3306:3306
+      - 3307:3306
     networks:
     - onfly-network
 

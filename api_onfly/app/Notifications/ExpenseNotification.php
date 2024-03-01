@@ -37,10 +37,14 @@ class ExpenseNotification extends Notification
     {
         return (new MailMessage)
             ->from('testeonfly@mail.com')
-            ->view('mail.expense', [
-                'expense' => $notifiable,
-                'user' => \Auth::user(),
-            ]);
+            ->subject('Nova despesa cadastrada')
+            ->greeting('Ola, ' . $notifiable->user->name . '!')
+            ->line('Voce tem uma nova despesa cadastrada: ')
+            ->line('Descrição: ' . $notifiable->description)
+            ->line('Data: ' . \Carbon\Carbon::createFromDate($notifiable->date)->format('d/m/Y'))
+            ->line('Valor: R$ ' . number_format($notifiable->cost), 2, ',', '.')
+            ->salutation('Atenciosamente, Onfly')
+            ;
     }
 
     /**
