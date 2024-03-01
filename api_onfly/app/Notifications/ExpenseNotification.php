@@ -37,7 +37,7 @@ class ExpenseNotification extends Notification
     {
         return (new MailMessage)
             ->from('testeonfly@mail.com')
-            ->subject('Nova despesa cadastrada')
+            ->subject('Despesa cadastrada')
             ->greeting('Ola, ' . $notifiable->user->name . '!')
             ->line('Voce tem uma nova despesa cadastrada: ')
             ->line('Descrição: ' . $notifiable->description)
