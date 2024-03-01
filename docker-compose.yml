@@ -3,7 +3,7 @@ version: '3'
 services:
   laravel-docker:
     container_name: onfly_app
-    entrypoint: dockerize -wait tcp://mysql_db:3306 -timeout 20s php artisan serve --host=0.0.0.0 --port=8000
+    entrypoint: dockerize -wait tcp://mysql_db:3307 -timeout 20s php artisan serve --host=0.0.0.0 --port=8000
     build: .
     volumes:
       - ./api_onfly:/var/www/html
