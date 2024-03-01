@@ -41,6 +41,7 @@ O projeto está 100% em containers do Docker, facilitando a configuração e tes
 
 ## Detalhes de implementações e tomadas de decisões:
 - O projeto está 100% dockerizado pela principal motivação de facilidade de configuração, onde eu mesmo codei em uma máquina 100% nova e sem nenhuma ferramenta previamente instalada.
+- O container MySQL compartilha um volume local, de modo que caso o container caia ou precise ser reiniciado os dados não são perdidos.
 - O envio de email foi configurado em uma conta pessoal no aplicativo Mailtrap, responsável por simular ambientes de envio de email. Para testar, sugerido trocar no arquivo .env da aplicação as credenciais de algum servidor ou conta Mailtrap válida
 - O roteamento de rotas direciona para um Controller, onde existe a validação de permissão de ação via Policy e validação dos dados da requisição em um Form Request customizado, sempre em arquivos com o nome da entidade + tipo de arquivo. As ações de regra de negócio são todas direcionadas para uma camada de BO e somente essa camada é capaz de interagir com a camada de Repository, que por sua vez acessa o banco de dados. Somente a camada de Repository manipula diretamente uma Model.
 - A camada de BO ainda conta com uma camada de trait, responsável por filtrar os dados do request antes de persistir no banco de dados. Isso cria uma camada de segurança adicional e previne erros, evitando que dados inexistentes ou nulos sejam inseridos, bem como campos inexistentes sejam acessados.
