@@ -47,5 +47,6 @@ O projeto está 100% em containers do Docker, facilitando a configuração e tes
 - A aplicação e as entidades foram todas feitas em ingles por padronização, com comentários em portugues em alguns pontos importantes.
 - A tratativa dos dados de retorno na camada de Resource foi interpretada como uma maneira de devolutiva da aplicação com dados legíveis em portugues, devolvendo todos os dados formatados de forma humana e com campos traduzidos. A decisão foi tomada para exemplificar um uso puramente informativo. Para reaproveitar as rotas possibilitando outras interações com a API, seriam devolvidos os dados de forma original.
 - O único recurso externo ao framework utilizado foi a biblioteca Predis, manipuladora do Redis para testar um formato diferente de filas. Todas as outras ferramentas utilizadas são da própria aplicação.
-
+- Não existe validação de usuário existente ao cadastrar pela tomada de decisão de utilizar o usuário logado. Se as ações sob uma despesa são únicas ao dono, então não faz sentido cadastrar uma despesa em nome de outro usuário.
+- Pela descrição da aplicação, as rotas e ações que fizeram sentido era o próprio CRUD + autenticação. É possível testar e validar todas as exigencias dentro dessas rotas, principalmente a de index e show (GET puro no resource e GET com id específico)
 - Sugestão ao testar as rotas: incluir cabeçalho "Accept" com "application/json" para melhor visualização das validações e travas.
